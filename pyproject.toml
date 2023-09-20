@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "liesel-template"
+authors = [{name = "John Doe", email = "john@doe.org"}]
+description = "A template repository for data analysis projects and simulation studies with Liesel and RLiesel"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dynamic = ["version"]
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+line_length = 120
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+
+[tool.setuptools.dynamic]
+version = {attr = "liesel_template.__version__"}

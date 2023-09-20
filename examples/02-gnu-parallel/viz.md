@@ -1,0 +1,30 @@
+# liesel-template: GNU Parallel example: Viz
+
+Load the splines from the RDS files for the different jobs and plot them
+together using ggplot2.
+
+``` r
+jobs <- list.dirs("jobs", recursive = FALSE)
+jobs <- jobs[grep("job-[0-9]+", jobs)]
+
+dfs <- lapply(jobs, function(job) {
+  readRDS(file.path(job, "splines.rds"))
+})
+
+gg1 <- do.call(rbind, dfs)
+x <- seq(0, 1, length.out = 1000)
+
+gg2 <- data.frame(
+  x = c(x, x),
+  f = c(sin(2 * pi * x), cos(2 * pi * x)),
+  param = rep(c("loc1", "loc2"), each = 1000)
+)
+
+ggplot(gg1, aes(x, f)) +
+  geom_line(aes(group = job), color = "gray") +
+  geom_line(data = gg2, color = 2, linewidth = 1) +
+  facet_wrap(vars(param)) +
+  theme_minimal()
+```
+
+![](viz_files/figure-commonmark/splines-1.png)

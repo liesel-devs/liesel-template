@@ -1,0 +1,23 @@
+name: liesel-template
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - blas=*=netlib
+  - parallel=20230722
+  - pdoc=14.1.0
+  - pip=23.2.1
+  - pre-commit=3.4.0
+  - pygraphviz=1.11
+  - pytest=7.4.2
+  - python=3.11.5
+  - r-base=4.3.1
+  - r-ggplot2=3.4.3
+  - r-knitr=1.44
+  - r-mgcv=1.9_0
+  - r-remotes=2.4.2.1
+  - r-reticulate=1.32.0
+  - r-rmarkdown=2.24
+  - pip:
+    - liesel==0.2.4
+    - -e .
